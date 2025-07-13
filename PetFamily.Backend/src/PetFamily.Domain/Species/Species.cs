@@ -2,23 +2,24 @@
 
 namespace PetFamily.Domain.Species
 {
-    public class Species : Entity<int>
+    public class Species : Entity<Guid>
     {
-        public string Name { get; private set; }
-        public IReadOnlyCollection<Breed> Breeds => _breeds.AsReadOnly();
-
-
         private readonly List<Breed> _breeds = [];
 
-        private Species(string name)
+        private Species(Guid id, string name) : base(id)
         {
             Name = name;
         }
 
+        public string Name { get; private set; }
+        public IReadOnlyCollection<Breed> Breeds => _breeds.AsReadOnly();
+
         public Result<Species> Create(string name)
         {
-            // Валидация
-            return Result.Success(new Species(name));
+            if (string.IsNullOrWhiteSpace(name))
+                return Result.Failure<Species>("Name is required");
+
+            return Result.Success(new Species(Guid.NewGuid(), name));
         }
     }
 }

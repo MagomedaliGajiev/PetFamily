@@ -5,22 +5,6 @@ namespace PetFamily.Domain.Pets
 {
     public class Pet : Entity<Guid>
     {
-        public string Nickname { get; private set; }
-        public SpeciesBreedInfo BreedInfo { get; private set; }
-        public string Description { get; private set; }
-        public string Color { get; private set; }
-        public string HealthInfo { get; private set; }
-        public string Address { get; private set; }
-        public decimal? Weight { get; private set; }
-        public decimal? Height { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public bool IsSterilized { get; private set; }
-        public DateTime? BirthDate { get; private set; }
-        public bool IsVaccinated { get; private set; }
-        public HelpStatus Status { get; private set; }
-        public IReadOnlyCollection<HelpRequisite> HelpRequisites => _helpRequisites.AsReadOnly();
-        public DateTime CreatedAt { get; private set; }
-
         private readonly List<HelpRequisite> _helpRequisites = [];
 
         private Pet(
@@ -54,6 +38,22 @@ namespace PetFamily.Domain.Pets
             Status = status;
             CreatedAt = createdAt;
         }
+
+        public string Nickname { get; private set; }
+        public SpeciesBreedInfo BreedInfo { get; private set; }
+        public string Description { get; private set; }
+        public string Color { get; private set; }
+        public string HealthInfo { get; private set; }
+        public string Address { get; private set; }
+        public decimal? Weight { get; private set; }
+        public decimal? Height { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public bool IsSterilized { get; private set; }
+        public DateTime? BirthDate { get; private set; }
+        public bool IsVaccinated { get; private set; }
+        public HelpStatus Status { get; private set; }
+        public IReadOnlyCollection<HelpRequisite> HelpRequisites => _helpRequisites.AsReadOnly();
+        public DateTime CreatedAt { get; private set; }
 
         public static Result<Pet> Create (
             string nickname,

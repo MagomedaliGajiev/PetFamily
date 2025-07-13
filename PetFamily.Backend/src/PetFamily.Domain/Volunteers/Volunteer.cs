@@ -6,15 +6,6 @@ namespace PetFamily.Domain.Volunteers
 {
     public class Volunteer : Entity<Guid>
     {
-        public string FullName { get; private set; }
-        public string Email { get; private set; }
-        public string  Description { get; private set; }
-        public int? ExperienceYears { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public IReadOnlyCollection<SocialMediaLink> SocialMediaLinks => _socialMediaLinks.AsReadOnly();
-        public IReadOnlyCollection<HelpRequisite> HelpRequisites => _helpRequisites.AsReadOnly();
-        public IReadOnlyCollection<Pet> Pets => _pets.AsReadOnly();
-
         private readonly List<SocialMediaLink> _socialMediaLinks = [];
         private readonly List<HelpRequisite> _helpRequisites = [];
         private readonly List<Pet> _pets = [];
@@ -32,6 +23,15 @@ namespace PetFamily.Domain.Volunteers
             ExperienceYears = experienceYears;
             PhoneNumber = phoneNumber;
         }
+
+        public string FullName { get; private set; }
+        public string Email { get; private set; }
+        public string  Description { get; private set; }
+        public int? ExperienceYears { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public IReadOnlyCollection<SocialMediaLink> SocialMediaLinks => _socialMediaLinks.AsReadOnly();
+        public IReadOnlyCollection<HelpRequisite> HelpRequisites => _helpRequisites.AsReadOnly();
+        public IReadOnlyCollection<Pet> Pets => _pets.AsReadOnly();
 
         public static Result<Volunteer>Create(
             string fullName,

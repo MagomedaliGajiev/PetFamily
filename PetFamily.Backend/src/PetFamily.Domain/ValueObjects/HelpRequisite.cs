@@ -4,14 +4,14 @@ namespace PetFamily.Domain.ValueObjects
 {
     public class HelpRequisite : ValueObject
     {
-        public string Title { get; }
-        public string Description { get; }
-
         private HelpRequisite(string title, string description)
         {
             Title = title;
             Description = description;
         }
+
+        public string Title { get; }
+        public string Description { get; }
 
         public static Result<HelpRequisite> Create(string  title, string description)
         {

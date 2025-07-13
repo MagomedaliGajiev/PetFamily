@@ -2,19 +2,21 @@
 
 namespace PetFamily.Domain.Species
 {
-    public class Breed : Entity<int>
+    public class Breed : Entity<Guid>
     {
-        public string Name { get; private set; }
-
-        public Breed(string name)
+        private Breed(Guid id, string name) : base(id)
         {
             Name = name;
         }
 
+        public string Name { get; private set; }
+
         public static Result<Breed> Create(string name)
         {
-            //Валидация
-            return Result.Success(new Breed(name));
+            if (string.IsNullOrWhiteSpace(name))
+                return Result.Failure<Breed>("Name is required");
+
+            return Result.Success(new Breed(Guid.NewGuid(), name));
         }
     }
 }
