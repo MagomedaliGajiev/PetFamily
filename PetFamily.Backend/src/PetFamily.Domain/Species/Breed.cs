@@ -4,7 +4,7 @@ namespace PetFamily.Domain.Species
 {
     public class Breed : Entity<int>
     {
-        private string Name { get; private set; }
+        public string Name { get; private set; }
 
         public Breed(string name)
         {
